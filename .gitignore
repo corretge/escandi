@@ -4,6 +4,6 @@
 # except
 !.gitignore
 !install-build-essential.sh
-!fabfile.py
-!fabfiles.d
+!escandi.d
+!escandi.d/*
 
