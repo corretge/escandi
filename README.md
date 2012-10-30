@@ -7,8 +7,8 @@ Install
 -------
 
 ```bash
-cd /opt/corretge
+cd /opt
 sudo git clone https://github.com/corretge/escandi.git corretge
-cd escandi
+cd corretge
 ./install-build-essential.sh
 ```
