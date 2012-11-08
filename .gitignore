@@ -1,8 +1,9 @@
-# except
-!.gitignore
-!install-build-essential.sh
-!escandi.d
-!escandi.d/*
-
 # Ignore all files
-*
+/*
+
+# except
+!/.gitignore
+!/install-build-essential.sh
+!/escandi.d
+
+
