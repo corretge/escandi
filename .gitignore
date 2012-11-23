@@ -4,6 +4,7 @@
 # except
 !/.gitignore
 !/install-build-essential.sh
+!/after-clone.sh
 !/escandi.d
 
 
