@@ -12,6 +12,7 @@
 #apt-get update
 #apt-get upgrade -y
 
+
 apt-get install apache2-mpm-prefork -y
 
 apt-get install mysql-server-5.5 -y
@@ -44,6 +45,11 @@ if [ -n $chkP ]; then
 	pear install --alldeps PhpDocumentor
 fi
 
+
+
+echo
+echo "After install pear, reboot your system or you must have problems installing phing"
+echo
 
 
 
