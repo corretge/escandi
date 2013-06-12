@@ -18,7 +18,7 @@ apt-get install apache2-mpm-prefork -y
 apt-get install mysql-server-5.5 -y
 
 apt-get install php5 php5-dev php5-cli php5-curl php5-common php5-gd php5-sqlite php5-xmlrpc php5-xsl php5-mysqlnd php5-imagick php5-memcached php5-xdebug php-pear -y
-
+pear upgrade-all
 pear config-set php_ini /etc/php5/apache2/php.ini
 pear config-set auto_discover 1
 ## Install APC Alternative PHP Cache
