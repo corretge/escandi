@@ -29,6 +29,7 @@ fi
 ## Install phing PHP Automating Build
 chkP=`pear info phing  | grep --quiet "No information found for"`
 if [ -n $chkP ]; then
+	pear channel-discover pear.phing.info
 	pear install --alldeps pear.phpunit.de/PHPUnit
 	pear install --alldeps phing/phing
 fi
