@@ -46,6 +46,10 @@ if [ -n $chkP ]; then
 	pear install --alldeps PhpDocumentor
 fi
 
+if [ ! -f /usr/local/bin/composer ]; then
+	curl -sS https://getcomposer.org/installer | php
+	mv composer.phar /usr/local/bin/composer
+fi
 
 
 echo
