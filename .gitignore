@@ -3,8 +3,13 @@
 
 # except
 !/.gitignore
+!/README.md
 !/install-build-essential.sh
 !/after-clone.sh
 !/escandi.d
+!/install-build-essential.sh
+!/install-php-compiler.sh
+!/compilar-php.txt
+
 
 

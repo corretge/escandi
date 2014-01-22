@@ -1,0 +1,45 @@
+El make install de PHP creu que el LoadModules està a /etc/apache2/httpd.conf. Ubuntu no empra aquest arxiu, però la instal·lació de PHP cascarà. Farem un workarroud:
+
+
+echo "# Afegit només per a make install PHP" > /etc/apache2/httpd.conf
+echo "LoadModule vhost_alias_module /usr/lib/apache2/modules/mod_vhost_alias.so" >> /etc/apache2/httpd.conf
+
+
+
+El configurem amb similars mòduls que els de Melbourne:
+
+
+./configure --with-apxs2=/usr/bin/apxs2 --disable-short-tags --with-openssl --with-zlib --enable-bcmath --with-bz2=/bin/bzip2 --enable-calendar --with-curl --with-curlwrappers --enable-exif --enable-ftp --with-gd --with-jpeg-dir=/usr/lib --with-png-dir=/usr/lib --with-xpm-dir=/usr/lib --with-t1lib --enable-gd-native-ttf --enable-gd-jis-conv --with-gettext --with-imap --with-imap-ssl --with-ldap --with-ldap-sasl --enable-mbstring --with-mcrypt --with-mhash --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql --with-pspell --with-readline --with-snmp --enable-soap --enable-sockets --without-sqlite --enable-sqlite-utf8 --with-tidy --enable-wddx --with-xmlrpc --with-xsl --enable-zip --with-pear --with-kerberos
+
+
+
+make && make install
+
+
+
+Instal·larem el php.ini preparat per a desenvolupament
+
+cp php.ini-   /usr/local/lib/php.ini
+
+
+
+
+Adaptarem la configuració a Ubuntu i esborrarem l'httpd.conf per a evitar confusions.
+
+cat /etc/apache2/httpd.conf | grep libphp5 > /etc/apache2/mods-available/php5.load
+rm -f /etc/apache2/httpd.conf && touch /etc/apache2/httpd.conf
+
+
+
+Afegim el mòdul a l'Apache
+
+a2enmod php5
+apache2ctl configtest && apache2ctl restart
+/etc/init.d/apache2 restart
+
+
+
+Per a certificar que tot funciona correctament farem
+echo "<?php phpinfo();?>" > /var/www/index.php
+rm /var/www/index.html
+
