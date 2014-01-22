@@ -5,12 +5,25 @@ echo "# Afegit només per a make install PHP" > /etc/apache2/httpd.conf
 echo "LoadModule vhost_alias_module /usr/lib/apache2/modules/mod_vhost_alias.so" >> /etc/apache2/httpd.conf
 
 
+a /opt/php fem
+git clone https://github.com/php/php-src.git
+git clone https://github.com/phalcon/cphalcon.git
+
 
 El configurem amb similars mòduls que els de Melbourne:
 
 
 ./configure --with-apxs2=/usr/bin/apxs2 --disable-short-tags --with-openssl --with-zlib --enable-bcmath --with-bz2=/bin/bzip2 --enable-calendar --with-curl --with-curlwrappers --enable-exif --enable-ftp --with-gd --with-jpeg-dir=/usr/lib --with-png-dir=/usr/lib --with-xpm-dir=/usr/lib --with-t1lib --enable-gd-native-ttf --enable-gd-jis-conv --with-gettext --with-imap --with-imap-ssl --with-ldap --with-ldap-sasl --enable-mbstring --with-mcrypt --with-mhash --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql --with-pspell --with-readline --with-snmp --enable-soap --enable-sockets --without-sqlite --enable-sqlite-utf8 --with-tidy --enable-wddx --with-xmlrpc --with-xsl --enable-zip --with-pear --with-kerberos
 
+
+i el de PHP 5.5
+
+cd /opt/php/php-src
+git checkout PHP-5.5
+./buildconf
+
+
+ ./configure --with-apxs2=/usr/bin/apxs2 --disable-short-tags --with-openssl --with-zlib --enable-bcmath --with-bz2=/bin/bzip2 --enable-calendar --with-curl --enable-exif --with-gd --with-jpeg-dir=/usr/lib --with-png-dir=/usr/lib --with-xpm-dir=/usr/lib --with-t1lib --enable-gd-native-ttf --enable-gd-jis-conv --with-gettext --with-imap --with-imap-ssl  --enable-mbstring --with-mcrypt --with-mhash --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql --with-readline --with-snmp  --enable-sockets  --with-tidy --enable-wddx --with-xmlrpc --with-xsl --enable-zip --with-pear --enable-pcntl --enable-sysvsem --enable-sysvshm  --enable-sysvmsg  --enable-shmop --enable-opcache --prefix=/opt/php --with-config-file-path=/opt --with-kerberos
 
 
 make && make install
@@ -42,4 +55,28 @@ apache2ctl configtest && apache2ctl restart
 Per a certificar que tot funciona correctament farem
 echo "<?php phpinfo();?>" > /var/www/index.php
 rm /var/www/index.html
+
+
+  184  cd /etc/alternatives/
+  185  l s-al
+  186  ls -al
+  187  ls -la ph*
+  188  rm php
+  189  ln -s /opt/php/bin/php
+  190  rm php-config
+  191  ln -s /opt/php/bin/php-config
+  192  rm phpize
+  193  ln -s /opt/php/bin/phpize
+  194  ls -al
+  195  php -v
+  196  pear info PEAR
+  197  whereis pear
+  198  ls -la /usr/bin/pear
+  199  ls -la /usr/bin/pecl
+  200  cd /usr/bin/
+  201  ls -al
+  202  rm pear
+  203  rm pecl
+  204  ln -s /opt/php/bin/pear
+  205  ln -s /opt/php/bin/pecl
 
